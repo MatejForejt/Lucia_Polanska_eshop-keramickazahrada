@@ -1,0 +1,206 @@
+@use '../../../../styles/mixins.scss' as *;
+
+.root {
+  // container styles if needed
+
+  .headerRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include respond-to-h(sm){
+      gap: 0.5rem;
+    }
+    @include respond-to-h(xs){
+      gap: 1rem;
+    }
+    @include respond-to-h(xxs){
+      gap: 1rem;
+    }
+    @include respond-to-v(md){
+      gap: 1rem;
+    }
+    @include respond-to-v(s){
+      gap: 1rem;
+    }
+    @include respond-to-v(sm){
+      gap: 1rem;
+    }
+    @include respond-to-v(xs){
+      gap: 1rem;
+    }
+
+    .leftCol {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      .leftColContent{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        justify-content: flex-start;
+
+        @include respond-to-v(s){
+					flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.25rem;
+				}
+				@include respond-to-v(sm){
+					flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.25rem;
+				}
+				@include respond-to-v(xs){
+					flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.25rem;
+				}
+        .labelUpper {
+          font-size: 1.5rem;
+          line-height: 1.2;
+          font-weight: 300;
+          font-family: "Sansation-Regular";
+          white-space: nowrap;
+
+          @include respond-to-h(lg){
+            font-size: 1.35rem;
+          }
+          @include respond-to-h(md){
+            font-size: 1.35rem;
+          }
+          @include respond-to-h(mdt){
+            font-size: 1.35rem;
+          }
+          @include respond-to-h(sm){
+            font-size: 1.35rem;
+          }
+          @include respond-to-h(xs){
+            font-size: 1.15rem;
+          }
+          @include respond-to-h(xxs){
+            font-size: 1.15rem;
+          }
+
+          @include respond-to-v(lg){
+            font-size: 1.35rem;
+          }
+          @include respond-to-v(md){
+            font-size: 1.25rem;
+          }
+          @include respond-to-v(s){
+            font-size: 1.15rem;
+          }
+          @include respond-to-v(sm){
+            font-size: 1.15rem;
+          }
+          @include respond-to-v(xs){
+            font-size: 1.15rem;
+          }
+        }
+        .rightInfoRow {
+          display: flex;
+          flex-direction: row;
+          
+
+          .fontSemibold {
+            font-size: 1.1rem;
+            line-height: 1.2;
+            font-weight: 300;
+            font-family: "Sansation-Light";
+
+            @include respond-to-h(lg){
+              font-size: 1.05rem;
+            }
+            @include respond-to-h(md){
+              font-size: 1.05rem;
+            }
+            @include respond-to-h(mdt){
+              font-size: 1.05rem;
+            }
+            @include respond-to-h(sm){
+              font-size: 1.05rem;
+            }
+            @include respond-to-h(xs){
+              font-size: 1rem;
+            }
+            @include respond-to-h(xxs){
+              font-size: 1rem;
+            }
+
+            @include respond-to-v(lg){
+              font-size: 1.05rem;
+            }
+            @include respond-to-v(md){
+              font-size: 1rem;
+            }
+            @include respond-to-v(s){
+              font-size: 1rem;
+            }
+            @include respond-to-v(sm){
+              font-size: 1rem;
+            }
+            @include respond-to-v(xs){
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+    .editBtn {
+      // Button styles if needed
+    }
+  }
+
+  .successPanel,
+  .errorPanel,
+  .editPanel {
+    transition-property: max-height, opacity;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+    overflow: hidden;
+  }
+  .editPanel {
+    overflow: visible;
+  }
+  .panelOpen {
+    max-height: 1000px;
+    opacity: 1;
+  }
+  .panelClosed {
+    max-height: 0;
+    opacity: 0;
+  }
+  .badgeSuccess {
+    padding: 0.5rem;
+    margin: 1rem 0;
+  }
+  .badgeError {
+    padding: 0.5rem;
+    margin: 1rem 0;
+  }
+  .editContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
+
+    .editActions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+
+      .saveBtn {
+        width: 100%;
+        @media (min-width: 640px) {
+          max-width: 140px;
+        }
+      }
+    }
+  }
+}

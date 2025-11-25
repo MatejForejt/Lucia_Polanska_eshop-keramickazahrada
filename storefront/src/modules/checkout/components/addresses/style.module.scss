@@ -1,0 +1,350 @@
+@use "../../../../styles/mixins.scss" as *;
+
+/* Addresses panel styles */
+.root {
+	background: #fff;
+
+    @include respond-to-h(sm){
+        width: 100%;
+    }
+    @include respond-to-h(xs){
+        width: 100%;
+    }
+    @include respond-to-h(xxs){
+        width: 100%;
+    }
+
+	.headerRow {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 1.5rem;
+
+        @include respond-to-h(sm){
+            gap: 0.5rem;
+        }
+        @include respond-to-h(xs){
+            gap: 1rem;
+        }
+        @include respond-to-h(xxs){
+            gap: 1rem;
+        }
+        @include respond-to-v(md){
+            gap: 1rem;
+        }
+        @include respond-to-v(s){
+            gap: 1rem;
+        }
+        @include respond-to-v(sm){
+            gap: 1rem;
+        }
+        @include respond-to-v(xs){
+            gap: 1rem;
+        }
+
+		.heading {
+			display: flex;
+            align-items: center !important;
+			flex-direction: row;
+			gap: 0.5rem;
+			align-items: baseline;
+			font-size: 2rem;
+			font-weight: 400;
+            width: fit-content;
+
+            @include respond-to-h(lg){
+                font-size: 1.8rem;
+            }
+            @include respond-to-h(md){
+                font-size: 1.8rem;
+            }
+            @include respond-to-h(mdt){
+                font-size: 1.8rem;
+            }
+            @include respond-to-h(sm){
+                font-size: 1.8rem;
+            }
+            @include respond-to-h(xs){
+                font-size: 1.6rem;
+            }
+            @include respond-to-h(xxs){
+                font-size: 1.6rem;
+            }
+
+            @include respond-to-v(lg){
+                font-size: 1.8rem;
+                padding-right: 2.5rem;
+            }
+            @include respond-to-v(md){
+                font-size: 1.8rem;
+            }
+            @include respond-to-v(s){
+                font-size: 1.6rem;
+            }
+            @include respond-to-v(sm){
+                font-size: 1.6rem;
+            }
+            @include respond-to-v(xs){
+                font-size: 1.6rem;
+            }
+
+            svg{
+                min-width: 15px;
+                min-height: 15px;
+            }
+            
+		}
+		.editBtn {
+			width: 80px;
+			height: 20px;
+		}
+	}
+
+	.form {
+		.shippingAddress {
+			padding-bottom: 2rem;
+		}
+		.billingAddress {
+			padding-bottom: 1.5rem;
+			padding-top: 2rem;
+		}
+		.submitBtn {
+			margin-top: 1.5rem;
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+		}
+		// .errorMsg: add error styles if needed
+	}
+
+	.summary {
+		font-size: 0.875rem;
+		.row {
+			display: flex;
+			align-items: start;
+			gap: 2rem;
+		}
+		.col {
+			display: flex;
+			flex-direction: column;
+			width: 33.3333%;
+			// &.shipping: shipping address column
+			// &.contact: contact column
+			// &.billing: billing address column
+			.label {
+                font-size: 1.1rem;
+				font-weight: 400;
+				color: var(--ChText);
+				margin-bottom: 0.25rem;
+
+                @include respond-to-h(md){
+                    font-size: 1rem;
+                }
+                @include respond-to-h(mdt){
+                    font-size: 1rem;
+                }
+                @include respond-to-h(sm){
+                    font-size: 1rem;
+                }
+                @include respond-to-h(xs){
+                    font-size: 0.9rem;
+                    font-weight: 300;
+                }
+                @include respond-to-h(xxs){
+                    font-size: 0.9rem;
+                    font-weight: 300;
+                }
+
+                @include respond-to-v(lg){
+                    font-size: 1rem;
+                }
+                @include respond-to-v(md){
+                    font-size: 1rem;
+                }
+                @include respond-to-v(s){
+                    font-size: 0.9rem;
+                    font-weight: 300;
+                }
+                @include respond-to-v(sm){
+                    font-size: 0.9rem;
+                    font-weight: 300;
+                }
+                @include respond-to-v(xs){
+                    font-size: 0.9rem;
+                    font-weight: 300;
+                }
+			}
+			.value {
+                font-size: 0.9rem;
+				font-weight: 300;
+				color: var(--ChText);
+				margin-bottom: 0.25rem;
+                font-family: "Sansation-Light";
+
+                @include respond-to-h(md){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-h(mdt){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-h(sm){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-h(xs){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+                @include respond-to-h(xxs){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+
+                @include respond-to-v(lg){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-v(md){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-v(s){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+                @include respond-to-v(sm){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+                @include respond-to-v(xs){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+			}
+			.note {
+                font-size: 0.9rem;
+				font-weight: 300;
+				color: var(--ChText);font-family: "Sansation-Light";
+
+                @include respond-to-h(md){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-h(mdt){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-h(sm){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-h(xs){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+                @include respond-to-h(xxs){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+
+                @include respond-to-v(lg){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-v(md){
+                    font-size: 0.85rem;
+                }
+                @include respond-to-v(s){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+                @include respond-to-v(sm){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+                @include respond-to-v(xs){
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                }
+			}
+		}
+	}
+
+	.divider {
+		margin-top: 2rem;
+	}
+}
+
+
+.ClickButton{
+    width: auto;
+    height: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .button{
+      position: relative;
+      width: 250px;
+      height: 40px;
+      cursor: pointer;
+      border-radius: 25px;
+      overflow: hidden;
+      border: none;
+      box-shadow: 0 2px 8px var(--ButtonBorder); // subtle shadow here
+      background-color: transparent;
+
+      .slider{
+          position: relative;
+          width: 100%;
+          height: 100%;
+
+          .el{
+              width: 100%;
+              height: 100%;
+              p{
+                margin: 0px;
+                font-size: 0.9rem;
+                color: var(--Wtext);
+              }
+              &:nth-of-type(2){
+                  p{
+                    color: var(--Wtext);
+                  }
+              }
+              &:hover{
+                  .perspectiveText{
+                      transform: rotateX(90deg);
+                      p{
+                          &:nth-of-type(1){
+                              transform: translateY(-100%);
+                              opacity: 0;
+                          }
+                          &:nth-of-type(2){
+                              opacity: 1;
+                          }
+                      }
+                  }
+              }
+          }
+      }
+        
+    }
+}
+
+.perspectiveText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+    p{
+        transition: all 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+        pointer-events: none;
+        text-transform: capitalize;
+        &:nth-of-type(2){
+            position: absolute;
+            transform-origin: bottom center;
+            transform: rotateX(-90deg) translateY(10px);
+            opacity: 0;
+        }
+    }
+}

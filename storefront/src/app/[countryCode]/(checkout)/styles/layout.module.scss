@@ -1,0 +1,116 @@
+@use "../../../../styles/mixins.scss" as *;
+
+/* Checkout Layout styles - SASS nesting */
+.root {
+	width: 100%;
+	background: #fff;
+	position: relative;
+	@media (min-width: 640px) {
+		min-height: 100dvh;
+	}
+
+	.header {
+		height: 4rem;
+		background-color: #fff;
+		border-bottom: 1px solid #e5e7eb;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		width: 100%;
+		padding: 0 5vw;
+		nav {
+			display: flex;
+			height: 100%;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			.backLink {
+				font-weight: 600;
+				color: var(--ChText);
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				text-transform: none;
+				flex: 1;
+				min-width: 0;
+				.chevron {
+					transform: rotate(90deg);
+				}
+				.backText {
+					font-size: 1.275rem;
+					margin-top: 1px;
+					display: none;
+					@media (min-width: 640px) {
+						display: block;
+					}
+					font-size: 0.875rem;
+					color: var(--ui-fg-subtle, #6B7280);
+					transition: color 0.15s;
+				}
+				.backTextMobile {
+					font-size: 1.275rem;
+					margin-top: 1px;
+					display: block;
+					@media (min-width: 640px) {
+						display: none;
+					}
+					color: var(--ui-fg-subtle, #6B7280);
+					transition: color 0.15s;
+				}
+			}
+			.storeLink {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				img{
+					max-width: 150px;
+					height: auto;
+					transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+
+					@include respond-to-v(sm){
+						max-width: 100px;
+					}
+					@include respond-to-v(xs){
+						max-width: 100px;
+					}
+				}
+				&:hover{
+					img{
+						transform: scale(1.05);
+					}
+				}
+			}
+			.spacer {
+				flex: 1;
+				min-width: 0;
+			}
+		}
+	}
+
+	.checkoutContainer {
+		position: relative;
+		width: 100%;
+		padding: 0 5vw;
+
+		@include respond-to-v(s){
+			padding: 0 3.5vw 0 2.5vw;
+		}
+		@include respond-to-v(sm){
+			padding: 0 3.5vw 0 2.5vw;
+		}
+		@include respond-to-v(xs){
+			padding: 0 3.5vw 0 2.5vw;
+		}
+	}
+
+	.footer {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}

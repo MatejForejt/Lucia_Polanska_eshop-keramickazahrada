@@ -1,0 +1,17 @@
+@use "../../../styles/mixins.scss" as *;
+
+.scrollbarProgress{
+    position: fixed;
+    bottom: 0dvh;
+    left: 0;
+    width: 100dvw;
+    height: 5px;
+    z-index: 2000;
+    pointer-events: none;
+    border-radius: 4px 0 0 4px;
+    transform-origin: 0% 0%;
+    background-color: var(--CreamDetails);
+    /* ensure hidden when no progress due to scaleX */
+    will-change: transform;
+
+}

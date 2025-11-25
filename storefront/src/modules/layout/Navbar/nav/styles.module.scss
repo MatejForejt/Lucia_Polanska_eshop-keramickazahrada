@@ -1,0 +1,214 @@
+@use "../../../../styles/mixins.scss" as *;
+.nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10dvh 10dvw 2.5dvh 10dvw;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    .header{
+        position: absolute;
+        top: 2.5dvh;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80dvw;
+        height: 15dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        @include respond-to-v(lg){
+            height: 10dvh;
+            gap: 0dvh;
+        }
+        @include respond-to-v(md){
+            height: 10dvh;
+            gap: 0dvh;
+        }
+        @include respond-to-v(s){
+            height: 10dvh;
+            gap: 0dvh;
+        }
+        @include respond-to-v(xs){
+            height: 15dvh;
+            gap: 2dvh;
+        }
+        .logo{
+            width: 10dvw;
+            height: 5dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            @include respond-to-v(xs){
+                width: 8dvw;
+                height: 4dvh;
+            }
+            @include respond-to-v(lg){
+                height: 1.5dvh;
+            }
+            @include respond-to-v(md){
+                height: 2.5dvh;
+            }
+            @include respond-to-v(s){
+                height: 5dvh;
+            }
+            @include respond-to-v(sm){
+                height: 5dvh;
+            }
+            @include respond-to-v(xs){
+                height: 5dvh;
+            }
+
+            a{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+
+                .logoImage{
+                    width: 150px;
+                    height: auto;
+                    @include respond-to-v(md){
+                        scale: 1.5;
+                    }
+                    @include respond-to-v(s){
+                        scale: 3;
+                    }
+                    @include respond-to-v(sm){
+                        scale: 3;
+                    }
+                    @include respond-to-v(xs){
+                        scale: 3;
+                    }
+                }
+            }
+        }
+        .logoTitle{
+            width: 100%;
+            height: 5dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h3{
+                font-size: 1.1rem;
+                color: var(--ChText);
+                font-weight: 300;
+
+                @include respond-to-v(xs){
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+    .body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        gap: 2.5rem;
+        @include respond-to-v(xs){
+            gap: 2rem;
+        }
+        @include respond-to-v(lg){
+            gap: 1rem;
+        }
+        @include respond-to-v(md){
+            gap: 1rem;
+        }
+         @include respond-to-v(s){
+            gap: 2rem;
+        }
+        @include respond-to-v(sm){
+            gap: 2rem;
+        }
+        @include respond-to-v(xs){
+            gap: 2rem;
+        }
+        .linkContainer{
+            width: 80dvw;
+            height: 4dvh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a{
+                text-decoration: none;
+                p{
+                    color: var(--ChText);
+                    font-size: 2.5rem;
+                    text-align: center;
+                    font-weight: 300;
+
+                @include respond-to-v(xs){
+                    font-size: 2.2rem;
+                }       
+                }
+            }
+        }
+    }
+    .footer{
+        display: flex;
+        flex-direction: row;
+        gap: 10dvw;
+        @include respond-to-v(lg){
+            gap: 5dvw;
+            margin-bottom: 0.5dvh;
+        }
+        @include respond-to-v(md){
+            gap: 5dvw;
+            margin-bottom: 0.5dvh;
+        }
+        @include respond-to-v(s){
+            gap: 15dvw;
+            margin-bottom: 0.5dvh;
+        }
+         @include respond-to-v(sm){
+            gap: 15dvw;
+            margin-bottom: 0.5dvh;
+        }
+         @include respond-to-v(xs){
+            gap: 15dvw;
+            margin-bottom: 0.5dvh;
+        }
+        .a{
+            width: 50%;
+            margin-top: 5px;
+            font-size: 1.3rem;
+            @include respond-to-v(xs){
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .country__Select{
+        width: 100%;
+        height: 5dvh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        position: relative;
+
+        @include respond-to-v(lg){
+            height: 2dvh;
+        }
+         @include respond-to-v(md){
+            height: 3dvh;
+        }
+         @include respond-to-v(s){
+            height: 3dvh;
+        }
+         @include respond-to-v(sm){
+            height: 3dvh;
+        }
+         @include respond-to-v(xs){
+            height: 4dvh;
+        }
+    }
+}

@@ -1,0 +1,386 @@
+@use "../../../../styles/mixins.scss" as *;
+
+/* CartTotals component styles - SASS nesting */
+.root {
+  width: 100%;
+  font-family: "Sansation-Light";
+  @include respond-to-v(md){
+    padding: 1rem;
+  }
+  @include respond-to-v(s){
+    padding: 1rem;
+  }
+  @include respond-to-v(sm){
+    padding: 1rem;
+  }
+  @include respond-to-v(xs){
+    padding: 1rem;
+  }
+  .totalsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--ChText);
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .label {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
+        font-weight: 400;
+        font-size: 1.1rem;
+        font-family: "Sansation-Regular";
+
+        @include respond-to-h(lg){
+          font-size: 1.1rem;
+        }
+        @include respond-to-h(md){
+          font-size: 1rem;
+        }
+        @include respond-to-h(mdt){
+          font-size: 1rem;
+        }
+        @include respond-to-h(sm){
+          font-size: 1rem;
+        }
+        @include respond-to-h(xs){
+          font-size: 0.9rem;
+        }
+        @include respond-to-h(xxs){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(lg){
+          font-size: 1rem;
+        }
+        @include respond-to-v(md){
+          font-size: 1rem;
+        }
+        @include respond-to-v(s){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(sm){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(xs){
+          font-size: 0.9rem;
+        }
+      }
+
+      .labelValue {
+        font-size: 1.1rem;
+        font-weight: 300;
+        font-family: "Sansation-Light";
+
+        @include respond-to-h(lg){
+          font-size: 1.1rem;
+        }
+        @include respond-to-h(md){
+          font-size: 1rem;
+        }
+        @include respond-to-h(mdt){
+          font-size: 1rem;
+        }
+        @include respond-to-h(sm){
+          font-size: 1rem;
+        }
+        @include respond-to-h(xs){
+          font-size: 0.9rem;
+        }
+        @include respond-to-h(xxs){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(lg){
+          font-size: 1rem;
+        }
+        @include respond-to-v(md){
+          font-size: 1rem;
+        }
+        @include respond-to-v(s){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(sm){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(xs){
+          font-size: 0.9rem;
+        }
+      }
+
+      .subtotal{
+        color: var(--ChText);
+        font-weight: 400;
+        font-size: 1.1rem;
+        font-family: "Sansation-Regular";
+        @include respond-to-h(lg){
+          font-size: 1.1rem;
+        }
+        @include respond-to-h(md){
+          font-size: 1rem;
+        }
+        @include respond-to-h(mdt){
+          font-size: 1rem;
+        }
+        @include respond-to-h(sm){
+          font-size: 1rem;
+        }
+        @include respond-to-h(xs){
+          font-size: 0.9rem;
+        }
+        @include respond-to-h(xxs){
+          font-size: 0.9rem;
+        }
+
+        @include respond-to-v(lg){
+          font-size: 1rem;
+        }
+        @include respond-to-v(md){
+          font-size: 1rem;
+        }
+        @include respond-to-v(s){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(sm){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(xs){
+          font-size: 0.9rem;
+        }
+      }
+      .discount, .giftCard {
+        color: var(--ChText);
+        font-size: 1.1rem;
+        font-weight: 300;
+        font-family: "Sansation-Regular";
+
+        @include respond-to-h(lg){
+          font-size: 1.1rem;
+        }
+        @include respond-to-h(md){
+          font-size: 1rem;
+        }
+        @include respond-to-h(mdt){
+          font-size: 1rem;
+        }
+        @include respond-to-h(sm){
+          font-size: 1rem;
+        }
+        @include respond-to-h(xs){
+          font-size: 0.9rem;
+        }
+        @include respond-to-h(xxs){
+          font-size: 0.9rem;
+        }
+
+        @include respond-to-v(lg){
+          font-size: 1rem;
+        }
+        @include respond-to-v(md){
+          font-size: 1rem;
+        }
+        @include respond-to-v(s){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(sm){
+          font-size: 0.9rem;
+        }
+        @include respond-to-v(xs){
+          font-size: 0.9rem;
+        }
+      }
+    }
+    .taxRow {
+      display: flex;
+      justify-content: space-between;
+      .label {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 300;
+        font-family: "Sansation-Light";
+
+        @include respond-to-h(lg){
+          font-size: 1rem;
+        }
+        @include respond-to-h(md){
+          font-size: 0.95rem;
+        }
+        @include respond-to-h(mdt){
+          font-size: 0.95rem;
+        }
+        @include respond-to-h(sm){
+          font-size: 0.95rem;
+        }
+        @include respond-to-h(xs){
+          font-size: 0.85rem;
+        }
+        @include respond-to-h(xxs){
+          font-size: 0.85rem;
+        }
+
+        @include respond-to-v(lg){
+          font-size: 0.95rem;
+        }
+        @include respond-to-v(md){
+          font-size: 0.95rem;
+        }
+        @include respond-to-v(s){
+          font-size: 0.85rem;
+        }
+        @include respond-to-v(sm){
+          font-size: 0.85rem;
+        }
+        @include respond-to-v(xs){
+          font-size: 0.85rem;
+        }
+      }
+
+      .labelValue{
+        font-size: 1.1rem;
+        font-weight: 300;
+        font-family: "Sansation-Light";
+
+        @include respond-to-h(lg){
+          font-size: 1rem;
+        }
+        @include respond-to-h(md){
+          font-size: 0.95rem;
+        }
+        @include respond-to-h(mdt){
+          font-size: 0.95rem;
+        }
+        @include respond-to-h(sm){
+          font-size: 0.95rem;
+        }
+        @include respond-to-h(xs){
+          font-size: 0.85rem;
+        }
+        @include respond-to-h(xxs){
+          font-size: 0.85rem;
+        }
+
+        @include respond-to-v(lg){
+          font-size: 0.95rem;
+        }
+        @include respond-to-v(md){
+          font-size: 0.95rem;
+        }
+        @include respond-to-v(s){
+          font-size: 0.85rem;
+        }
+        @include respond-to-v(sm){
+          font-size: 0.85rem;
+        }
+        @include respond-to-v(xs){
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+  .divider {
+    height: 1px;
+    width: 100%;
+    border-bottom: 1px solid #e5e7eb;
+    margin: 1rem 0;
+    background: none;
+    &.mt {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+    &.mb {
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
+  }
+  .totalRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    
+    .total {
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-family: "Sansation-Regular";
+      color: var(--ChText);
+
+
+      @include respond-to-h(lg){
+        font-size: 1.1rem;
+      }
+      @include respond-to-h(md){
+        font-size: 1rem;
+      }
+      @include respond-to-h(mdt){
+        font-size: 1rem;
+      }
+      @include respond-to-h(sm){
+        font-size: 1rem;
+      }
+      @include respond-to-h(xs){
+        font-size: 0.9rem;
+      }
+      @include respond-to-h(xxs){
+        font-size: 0.9rem;
+      }
+      @include respond-to-v(lg){
+        font-size: 1rem;
+      }
+      @include respond-to-v(md){
+        font-size: 1rem;
+      }
+      @include respond-to-v(s){
+        font-size: 0.9rem;
+      }
+      @include respond-to-v(sm){
+        font-size: 0.9rem;
+      }
+      @include respond-to-v(xs){
+        font-size: 0.9rem;
+      }
+    }
+    .totalValue {
+      font-size: 1.1rem;
+      font-weight: 300;
+      font-family: "Sansation-Light";
+
+      @include respond-to-h(lg){
+        font-size: 1.1rem;
+      }
+      @include respond-to-h(md){
+        font-size: 1rem;
+      }
+      @include respond-to-h(mdt){
+        font-size: 1rem;
+      }
+      @include respond-to-h(sm){
+        font-size: 1rem;
+      }
+      @include respond-to-h(xs){
+        font-size: 0.9rem;
+      }
+      @include respond-to-h(xxs){
+        font-size: 0.9rem;
+      }
+      @include respond-to-v(lg){
+        font-size: 1rem;
+      }
+      @include respond-to-v(md){
+        font-size: 1rem;
+      }
+      @include respond-to-v(s){
+        font-size: 0.9rem;
+      }
+      @include respond-to-v(sm){
+        font-size: 0.9rem;
+      }
+      @include respond-to-v(xs){
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
