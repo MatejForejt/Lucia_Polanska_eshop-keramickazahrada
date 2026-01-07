@@ -1,7 +1,7 @@
-import { defineMiddlewares, validateAndTransformBody } from "@medusajs/framework/http"
+import { defineMiddlewares, validateAndTransformBody, authenticate } from "@medusajs/framework/http"
 import { PostCustomPriceSchema } from "./store/variants/[id]/price/route"
 import { PostStoreReviewSchema } from "./store/reviews/route"
-import { 
+import {
   PostAddCustomLineItemSchema,
 } from "./store/carts/[id]/line-items-custom/route"
 
@@ -18,6 +18,7 @@ export default defineMiddlewares({
       matcher: "/store/reviews",
       methods: ["POST"],
       middlewares: [
+        authenticate("customer", ["bearer", "session"]),
         validateAndTransformBody(PostStoreReviewSchema),
       ],
     },
@@ -26,6 +27,36 @@ export default defineMiddlewares({
       methods: ["POST"],
       middlewares: [
         validateAndTransformBody(PostAddCustomLineItemSchema),
+      ],
+    },
+    // Wishlist authentication
+    {
+      matcher: "/store/customers/me/wishlists",
+      methods: ["GET", "POST"],
+      middlewares: [
+        authenticate("customer", ["bearer", "session"]),
+      ],
+    },
+    {
+      matcher: "/store/customers/me/wishlists/items",
+      methods: ["GET", "POST"],
+      middlewares: [
+        authenticate("customer", ["bearer", "session"]),
+      ],
+    },
+    {
+      matcher: "/store/customers/me/wishlists/items/:id",
+      methods: ["DELETE"],
+      middlewares: [
+        authenticate("customer", ["bearer", "session"]),
+      ],
+    },
+    // Customer reviews authentication
+    {
+      matcher: "/store/customers/me/reviews",
+      methods: ["GET"],
+      middlewares: [
+        authenticate("customer", ["bearer", "session"]),
       ],
     },
   ],
