@@ -59,7 +59,12 @@ export async function POST(req: NextRequest) {
 
     const authHeaders = await getAuthHeaders()
 
-    if (!("authorization" in authHeaders)) {
+    // Debug: Log auth status
+    const hasAuth = "authorization" in authHeaders
+    console.log("[Wishlist API] Auth headers present:", hasAuth)
+
+    if (!hasAuth) {
+      console.log("[Wishlist API] No authorization header found in cookies")
       return NextResponse.json(
         { success: false, message: "Not authenticated" },
         { status: 401 }
@@ -67,7 +72,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Include publishable API key explicitly for sales channel context
-  const incomingPk = req.headers.get("x-publishable-api-key") || req.headers.get("x-publishable-key")
+    const incomingPk = req.headers.get("x-publishable-api-key") || req.headers.get("x-publishable-key")
     const publishableKey = incomingPk || process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
     if (!publishableKey) {
       return NextResponse.json(
@@ -110,7 +115,12 @@ export async function POST(req: NextRequest) {
     // If backend returns structure, surface success
     return NextResponse.json({ success: true, ...(addResp || {}) })
   } catch (e: any) {
+    // Log the full error for debugging
+    console.error("[Wishlist API] Error:", e?.message, e?.response?.status)
+
     const message = e?.message || "Failed to add to wishlist"
-    return NextResponse.json({ success: false, message }, { status: 500 })
+    // Propagate 401 status if backend returned it
+    const status = e?.response?.status === 401 ? 401 : 500
+    return NextResponse.json({ success: false, message }, { status })
   }
 }

@@ -18,6 +18,11 @@ async function getCustomerWishlists(_customerId: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("_medusa_jwt")?.value
   const pk = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+  
+  // Debug logging
+  console.log("[Wishlist Page] Token exists:", !!token, token ? `(${token.substring(0, 20)}...)` : "")
+  console.log("[Wishlist Page] Publishable key exists:", !!pk)
+  
   const headers: Record<string, string> = {
     accept: "application/json",
     "content-type": "application/json",
@@ -25,24 +30,30 @@ async function getCustomerWishlists(_customerId: string) {
   }
   if (token) headers.authorization = `Bearer ${token}`
 
+  const backendUrl = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
+  console.log("[Wishlist Page] Backend URL:", backendUrl)
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/store/customers/me/wishlists`,
+      `${backendUrl}/store/customers/me/wishlists`,
       {
         cache: "no-store",
         headers,
       }
     )
 
+    console.log("[Wishlist Page] Response status:", res.status)
+    
     if (!res.ok) {
-      console.error("[Account] wishlist fetch failed with status:", res.status)
+      const errorBody = await res.text()
+      console.error("[Wishlist Page] Failed with status:", res.status, "Body:", errorBody)
       return []
     }
     const data = await res.json()
-    console.log("[Account] Wishlist data fetched:", data)
+    console.log("[Wishlist Page] Success, items count:", data.wishlist?.items?.length || 0)
     return data.wishlist?.items ?? []
   } catch (e) {
-    console.error("[Account] failed to fetch wishlist", e)
+    console.error("[Wishlist Page] Exception:", e)
     return []
   }
 }

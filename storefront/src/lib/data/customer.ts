@@ -16,19 +16,58 @@ import {
 } from "./cookies"
 import { v4 as uuidv4 } from "uuid"
 
+/**
+ * Attempts to refresh the auth token using Medusa SDK.
+ * Returns the new token if successful, null otherwise.
+ * Note: Does NOT remove the token on failure - the original token might still be valid.
+ */
+const refreshAuthToken = async (): Promise<string | null> => {
+  try {
+    const newToken = await sdk.auth.refresh()
+    if (newToken && typeof newToken === "string") {
+      await setAuthToken(newToken)
+      console.log("[Auth] Token refreshed successfully")
+      return newToken
+    }
+    return null
+  } catch (error) {
+    // Refresh failed - but don't remove the token, it might still be valid
+    // The token will naturally expire or be invalidated by the backend
+    console.warn("[Auth] Token refresh failed, keeping existing token")
+    return null
+  }
+}
+
 export const retrieveCustomer = async (
-  opts?: { forceFresh?: boolean }
+  opts?: { forceFresh?: boolean; _isRetry?: boolean }
 ): Promise<HttpTypes.StoreCustomer | null> => {
   const authHeaders = await getAuthHeaders()
 
-  if (!authHeaders) return null
+  if (!authHeaders || !("authorization" in authHeaders)) return null
 
   const headers = {
     ...authHeaders,
   }
 
-  // If caller requests fresh data, bypass Next cache
-  if (opts?.forceFresh) {
+  const fetchCustomer = async () => {
+    // If caller requests fresh data, bypass Next cache
+    if (opts?.forceFresh) {
+      return await sdk.client
+        .fetch<{ customer: HttpTypes.StoreCustomer }>(`/store/customers/me`, {
+          method: "GET",
+          query: {
+            fields: "*orders",
+          },
+          headers,
+          cache: "no-store",
+        })
+        .then(({ customer }) => customer)
+    }
+
+    const next = {
+      ...(await getCacheOptions("customers")),
+    }
+
     return await sdk.client
       .fetch<{ customer: HttpTypes.StoreCustomer }>(`/store/customers/me`, {
         method: "GET",
@@ -36,28 +75,29 @@ export const retrieveCustomer = async (
           fields: "*orders",
         },
         headers,
-        cache: "no-store",
+        next,
+        cache: "force-cache",
       })
       .then(({ customer }) => customer)
-      .catch(() => null)
   }
 
-  const next = {
-    ...(await getCacheOptions("customers")),
-  }
+  try {
+    return await fetchCustomer()
+  } catch (error: any) {
+    // Check if it's a 401 error and we haven't already retried
+    const is401 = error?.response?.status === 401 || error?.message?.includes("401")
 
-  return await sdk.client
-    .fetch<{ customer: HttpTypes.StoreCustomer }>(`/store/customers/me`, {
-      method: "GET",
-      query: {
-        fields: "*orders",
-      },
-      headers,
-      next,
-      cache: "force-cache",
-    })
-    .then(({ customer }) => customer)
-    .catch(() => null)
+    if (is401 && !opts?._isRetry) {
+      // Try to refresh the token
+      const newToken = await refreshAuthToken()
+      if (newToken) {
+        // Retry with the new token
+        return retrieveCustomer({ ...opts, _isRetry: true })
+      }
+    }
+
+    return null
+  }
 }
 
 export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
@@ -329,7 +369,7 @@ export const updateCustomerAddress = async (
 
 // FIXING THE ISSUE WITH THE ACC REGISTRATION - issue with email already registered inside db but acc not created
 export async function getCustomerByEmail(
-  email: string 
+  email: string
 ): Promise<HttpTypes.StoreCustomer | null> {
   const headers = {
     ...(await getAuthHeaders()),
