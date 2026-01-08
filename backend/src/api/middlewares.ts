@@ -10,19 +10,8 @@ const debugAuthMiddleware = () => {
   return async (req: MedusaRequest, res: MedusaResponse, next: MedusaNextFunction) => {
     console.log("[Middleware Debug] Path:", req.path)
     console.log("[Middleware Debug] Method:", req.method)
-    console.log("[Middleware Debug] Authorization header:", req.headers.authorization?.substring(0, 50) + "...")
-    console.log("[Middleware Debug] x-publishable-api-key:", req.headers["x-publishable-api-key"])
-    console.log("[Middleware Debug] auth_context before:", (req as any).auth_context)
-
-    next()
-  }
-}
-
-// Debug middleware to log after authenticate
-const debugAfterAuthMiddleware = () => {
-  return async (req: MedusaRequest, res: MedusaResponse, next: MedusaNextFunction) => {
-    console.log("[Middleware Debug After Auth] auth_context:", (req as any).auth_context)
-    console.log("[Middleware Debug After Auth] actor_id:", (req as any).auth_context?.actor_id)
+    console.log("[Middleware Debug] Authorization header present:", !!req.headers.authorization)
+    console.log("[Middleware Debug] auth_context:", (req as any).auth_context)
     next()
   }
 }
@@ -51,14 +40,13 @@ export default defineMiddlewares({
         validateAndTransformBody(PostAddCustomLineItemSchema),
       ],
     },
-    // Wishlist authentication with debug
+    // Wishlist routes - rely on Medusa's internal auth for /store/customers/me/*
+    // Added debug middleware to verify requests reach here
     {
       matcher: "/store/customers/me/wishlists",
       methods: ["GET", "POST"],
       middlewares: [
         debugAuthMiddleware(),
-        authenticate("customer", ["bearer", "session"]),
-        debugAfterAuthMiddleware(),
       ],
     },
     {
@@ -66,8 +54,6 @@ export default defineMiddlewares({
       methods: ["GET", "POST"],
       middlewares: [
         debugAuthMiddleware(),
-        authenticate("customer", ["bearer", "session"]),
-        debugAfterAuthMiddleware(),
       ],
     },
     {
@@ -75,18 +61,14 @@ export default defineMiddlewares({
       methods: ["DELETE"],
       middlewares: [
         debugAuthMiddleware(),
-        authenticate("customer", ["bearer", "session"]),
-        debugAfterAuthMiddleware(),
       ],
     },
-    // Customer reviews authentication
+    // Customer reviews - rely on Medusa's internal auth for /store/customers/me/*
     {
       matcher: "/store/customers/me/reviews",
       methods: ["GET"],
       middlewares: [
         debugAuthMiddleware(),
-        authenticate("customer", ["bearer", "session"]),
-        debugAfterAuthMiddleware(),
       ],
     },
   ],
