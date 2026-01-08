@@ -38,6 +38,10 @@ import {
 
 loadEnv(process.env.NODE_ENV, process.cwd());
 
+// Log JWT configuration at startup
+const resolvedJwtExpiresIn = JWT_EXPIRES_IN || '30d'
+console.log('[Medusa Config] JWT_EXPIRES_IN value:', resolvedJwtExpiresIn)
+
 const medusaConfig = {
   projectConfig: {
     databaseUrl: DATABASE_URL,
@@ -49,7 +53,7 @@ const medusaConfig = {
       authCors: AUTH_CORS,
       storeCors: STORE_CORS,
       jwtSecret: JWT_SECRET,
-      jwtExpiresIn: JWT_EXPIRES_IN,
+      jwtExpiresIn: resolvedJwtExpiresIn,
       cookieSecret: COOKIE_SECRET
     },
     build: {

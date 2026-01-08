@@ -58,7 +58,7 @@ export const JWT_SECRET = assertValue(
 /**
  * JWT Expires In
  */
-export const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN! || '7d'
+export const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '30d'
 
 /**
  * Cookie secret used for signing cookies
