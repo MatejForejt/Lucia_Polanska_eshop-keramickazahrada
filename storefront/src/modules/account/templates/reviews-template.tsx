@@ -127,7 +127,12 @@ export default function ReviewsTemplate({ reviews }: { reviews: any[]} ) {
                                 </div>
                                 <div className={s.reviewImage}>
                                     <Image    
-                                        src={review?.product?.thumbnail?.url || '/assets/tee-black-front.webp' || '/assets/img/horizontal_prop.png'}
+                                        src={
+                                          (typeof review?.product?.thumbnail === 'string' 
+                                            ? review.product.thumbnail 
+                                            : review?.product?.thumbnail?.url) 
+                                          || '/assets/img/horizontal_prop.png'
+                                        }
                                         alt={review?.product?.title || 'Product image'}
                                         width={100}
                                         height={100}
